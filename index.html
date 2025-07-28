@@ -561,38 +561,72 @@
     </section>
 
     <script>
-        // Supabase configuration - FIXED URL
-        const SUPABASE_URL = 'https://uatvmufliycargrakskw.supabase.co'
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVhdHZtdWZsaXljYXJncmFrc2t3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM3MjE4NDksImV4cCI6MjA2OTI5Nzg0OX0.NV1ASX1axL-uUieXm7aR4ttlTQpdhLKX3oqdVnO4-ys'
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+        // Wait for Supabase to load before running code
+        function initializeApp() {
+            console.log('Checking if Supabase is loaded...', window.supabase);
+            
+            if (!window.supabase) {
+                console.log('Supabase not loaded yet, waiting...');
+                setTimeout(initializeApp, 100);
+                return;
+            }
+            
+            console.log('Supabase loaded successfully!');
+            
+            // Supabase configuration
+            const SUPABASE_URL = 'https://uatvmufliycargrakskw.supabase.co'
+            const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVhdHZtdWZsaXljYXJncmFrc2t3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM3MjE4NDksImV4cCI6MjA2OTI5Nzg0OX0.NV1ASX1axL-uUieXm7aR4ttlTQpdhLKX3oqdVnO4-ys'
+            const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+            
+            console.log('Supabase client created:', supabase);
 
-        // Handle interest form - FIXED
-        document.getElementById('interestForm').addEventListener('submit', async (e) => {
-            e.preventDefault()
-            console.log('Form submitted!') // Debug log
-            
-            const formData = new FormData(e.target)
-            const data = {
-                name: formData.get('name'),
-                phone: formData.get('phone'),
-                email: formData.get('email') || null
-            }
-            
-            console.log('Form data:', data) // Debug log
-            
-            const { error } = await supabase
-                .from('interest_leads')
-                .insert([data])
-            
-            if (error) {
-                console.error('Supabase error:', error)
-                alert('Error: ' + error.message)
+            // Handle interest form
+            const form = document.getElementById('interestForm');
+            if (form) {
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault()
+                    console.log('Form submitted!');
+                    
+                    const formData = new FormData(e.target)
+                    const data = {
+                        name: formData.get('name'),
+                        phone: formData.get('phone'),
+                        email: formData.get('email') || null
+                    }
+                    
+                    console.log('Form data:', data);
+                    
+                    try {
+                        const { data: result, error } = await supabase
+                            .from('interest_leads')
+                            .insert([data])
+                        
+                        if (error) {
+                            console.error('Supabase error:', error);
+                            alert('Error: ' + error.message);
+                        } else {
+                            console.log('Success! Data inserted:', result);
+                            document.getElementById('successMessage').classList.add('show');
+                            e.target.reset();
+                        }
+                    } catch (err) {
+                        console.error('JavaScript error:', err);
+                        alert('Unexpected error: ' + err.message);
+                    }
+                });
+                
+                console.log('Form event listener added');
             } else {
-                console.log('Success!') // Debug log
-                document.getElementById('successMessage').classList.add('show')
-                e.target.reset()
+                console.error('Form with ID "interestForm" not found!');
             }
-        })
+        }
+
+        // Start initialization when page loads
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeApp);
+        } else {
+            initializeApp();
+        }
     </script>
 </body>
 </html>
