@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barbarika - Train the Next Generation of Robots</title>
+    <!-- Add Supabase Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         * {
             margin: 0;
@@ -367,6 +369,21 @@
             background: rgba(0, 255, 136, 0.2);
             border-color: #00ff88;
         }
+
+        /* Success Message */
+        .success-message {
+            background: rgba(0,255,136,0.1);
+            color: #00ff88;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            text-align: center;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
         
         /* Robot Illustration */
         .robot-illustration {
@@ -499,15 +516,20 @@
                     <li>Join 2,000+ builders across 50+ countries</li>
                 </ul>
                 
-                <form class="signup-form">
+                <form class="signup-form" id="interestForm">
                     <div class="form-group">
                         <label for="name">First Name *</label>
-                        <input type="text" id="name" placeholder="Enter your first name" required>
+                        <input type="text" id="name" name="name" placeholder="Enter your first name" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="email">Email *</label>
-                        <input type="email" id="email" placeholder="your@email.com" required>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">WhatsApp Number *</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+91 9876543210" required>
                     </div>
                     
                     <div class="checkbox-group">
@@ -517,6 +539,10 @@
                     
                     <button type="submit" class="signup-btn">🚀 Start Your Journey</button>
                 </form>
+
+                <div id="successMessage" class="success-message">
+                    ✅ Thank you! We'll be in touch soon.
+                </div>
                 
                 <div class="divider">
                     <span>or</span>
@@ -533,83 +559,40 @@
             </div>
         </div>
     </section>
+
     <script>
-        // Supabase configuration
-const SUPABASE_URL = '[https://uatvmufliycargrakskw.supabase.co](https://uatvmufliycargrakskw.supabase.co/)'
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVhdHZtdWZsaXljYXJncmFrc2t3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM3MjE4NDksImV4cCI6MjA2OTI5Nzg0OX0.NV1ASX1axL-uUieXm7aR4ttlTQpdhLKX3oqdVnO4-ys'
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+        // Supabase configuration - FIXED URL
+        const SUPABASE_URL = 'https://uatvmufliycargrakskw.supabase.co'
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVhdHZtdWZsaXljYXJncmFrc2t3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM3MjE4NDksImV4cCI6MjA2OTI5Nzg0OX0.NV1ASX1axL-uUieXm7aR4ttlTQpdhLKX3oqdVnO4-ys'
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 
-// Handle interest form
-document.getElementById('interestForm').addEventListener('submit', async (e) => {
-e.preventDefault()
-
-const formData = new FormData(e.target)
-const data = {
-name: formData.get('name'),
-phone: formData.get('phone'),
-email: formData.get('email') || null
-}
-
-const { error } = await supabase
-.from('interest_leads')
-.insert([data])
-
-if (error) {
-alert('Error: ' + error.message)
-} else {
-document.getElementById('successMessage').classList.add('show')
-e.target.reset()
-// Update counter
-updateStats()
-}
-})
-
-// Handle pre-order form
-document.getElementById('preorderForm').addEventListener('submit', async (e) => {
-e.preventDefault()
-
-const formData = new FormData(e.target)
-const data = {
-name: formData.get('name'),
-phone: formData.get('phone'),
-quantity: parseInt(formData.get('quantity')),
-timeline: formData.get('timeline')
-}
-
-const { error } = await supabase
-.from('preorder_leads')
-.insert([data])
-
-if (error) {
-alert('Error: ' + error.message)
-} else {
-document.getElementById('preorderSuccess').classList.add('show')
-e.target.reset()
-}
-})
-
-// Load admin dashboard data
-async function loadAdminData() {
-const { data: interests } = await supabase
-.from('interest_leads')
-.select('*')
-.order('created_at', { ascending: false })
-
-const { data: preorders } = await supabase
-.from('preorder_leads')
-.select('*')
-.order('created_at', { ascending: false })
-
-// Update stats and tables
-document.getElementById('totalInterested').textContent = interests?.length || 0
-document.getElementById('totalPreorders').textContent = preorders?.length || 0
-
-// Populate tables
-displayLeads(interests, 'interestLeads')
-displayLeads(preorders, 'preorderLeads')
-}
-
+        // Handle interest form - FIXED
+        document.getElementById('interestForm').addEventListener('submit', async (e) => {
+            e.preventDefault()
+            console.log('Form submitted!') // Debug log
+            
+            const formData = new FormData(e.target)
+            const data = {
+                name: formData.get('name'),
+                phone: formData.get('phone'),
+                email: formData.get('email') || null
+            }
+            
+            console.log('Form data:', data) // Debug log
+            
+            const { error } = await supabase
+                .from('interest_leads')
+                .insert([data])
+            
+            if (error) {
+                console.error('Supabase error:', error)
+                alert('Error: ' + error.message)
+            } else {
+                console.log('Success!') // Debug log
+                document.getElementById('successMessage').classList.add('show')
+                e.target.reset()
+            }
+        })
     </script>
 </body>
 </html>
-
