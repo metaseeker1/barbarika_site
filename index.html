@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barbarika - Train the Next Generation of Robots</title>
+    <!-- Supabase Library -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
     <style>
         * {
             margin: 0;
@@ -316,6 +318,11 @@
             box-shadow: 0 5px 20px rgba(0, 255, 136, 0.3);
         }
         
+        .signup-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        
         .divider {
             text-align: center;
             margin: 1.5rem 0;
@@ -381,6 +388,22 @@
         }
 
         .success-message.show {
+            display: block !important;
+        }
+
+        /* Error Message */
+        .error-message {
+            background: rgba(255,0,0,0.1);
+            color: #ff6b6b;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            text-align: center;
+            display: none;
+            border: 1px solid rgba(255,0,0,0.3);
+        }
+
+        .error-message.show {
             display: block !important;
         }
         
@@ -542,6 +565,10 @@
                 <div id="successMessage" class="success-message">
                     ✅ Thank you! We'll be in touch soon.
                 </div>
+
+                <div id="errorMessage" class="error-message">
+                    ❌ Something went wrong. Please try again.
+                </div>
                 
                 <div class="divider">
                     <span>or</span>
@@ -560,56 +587,114 @@
     </section>
 
     <script>
-        // Simple form handler - no Supabase needed for now
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('✅ Page loaded!');
+        // Initialize the app with Supabase integration
+        function initializeApp() {
+            console.log('🚀 Initializing app...');
             
+            // Check if Supabase is loaded
+            if (!window.supabase) {
+                console.log('⏳ Waiting for Supabase to load...');
+                setTimeout(initializeApp, 100);
+                return;
+            }
+            
+            console.log('✅ Supabase loaded!');
+            
+            // Supabase configuration
+            const SUPABASE_URL = 'https://uatvmufliycargrakskw.supabase.co';
+            const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVhdHZtdWZsaXljYXJncmFrc2t3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM3MjE4NDksImV4cCI6MjA2OTI5Nzg0OX0.NV1ASX1axL-uUieXm7aR4ttlTQpdhLKX3oqdVnO4-ys';
+            
+            const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            console.log('✅ Supabase client created:', supabase);
+            
+            // Get form elements
             const form = document.getElementById('interestForm');
             const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            const submitButton = form?.querySelector('.signup-btn');
             
-            console.log('✅ Form found:', form);
-            console.log('✅ Success message element:', successMessage);
+            if (!form) {
+                console.error('❌ Form not found!');
+                return;
+            }
             
-            if (form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault(); // Stop form from actually submitting
-                    
-                    console.log('🚀 Form submitted!');
-                    
+            console.log('✅ Form found and ready');
+            
+            // Handle form submission
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                console.log('📝 Form submitted!');
+                
+                // Hide previous messages
+                successMessage.classList.remove('show');
+                errorMessage.classList.remove('show');
+                
+                // Disable submit button
+                if (submitButton) {
+                    submitButton.disabled = true;
+                    submitButton.textContent = '⏳ Submitting...';
+                }
+                
+                try {
                     // Get form data
                     const formData = new FormData(e.target);
-                    const name = formData.get('name');
-                    const email = formData.get('email');
-                    const phone = formData.get('phone');
+                    const data = {
+                        name: formData.get('name'),
+                        phone: formData.get('phone'),
+                        email: formData.get('email') || null
+                    };
                     
-                    console.log('📝 Name:', name);
-                    console.log('📧 Email:', email);
-                    console.log('📱 Phone:', phone);
+                    console.log('📊 Form data:', data);
                     
-                    // Show success message
-                    if (successMessage) {
-                        successMessage.classList.add('show');
-                        console.log('✅ Success message should be visible now!');
+                    // Insert into Supabase
+                    const { data: result, error } = await supabase
+                        .from('interest_leads')
+                        .insert([data]);
+                    
+                    if (error) {
+                        console.error('❌ Supabase error:', error);
                         
-                        // Also make it visible with direct style as backup
-                        successMessage.style.display = 'block';
+                        // Show error message
+                        errorMessage.textContent = `❌ Error: ${error.message}`;
+                        errorMessage.classList.add('show');
                         
                     } else {
-                        console.error('❌ Success message element not found!');
+                        console.log('✅ Data saved successfully:', result);
+                        
+                        // Show success message
+                        successMessage.classList.add('show');
+                        
+                        // Clear form
+                        e.target.reset();
+                        
+                        console.log('🎉 Form submitted and cleared!');
                     }
                     
-                    // Clear form
-                    e.target.reset();
+                } catch (err) {
+                    console.error('❌ Unexpected error:', err);
                     
-                    // Alert for testing
-                    alert('✅ Form submitted successfully! Check if green message appears below the form.');
-                });
+                    // Show error message
+                    errorMessage.textContent = '❌ Unexpected error occurred. Please try again.';
+                    errorMessage.classList.add('show');
+                }
                 
-                console.log('✅ Form event listener added successfully!');
-            } else {
-                console.error('❌ Form with ID "interestForm" not found!');
-            }
-        });
+                // Re-enable submit button
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = '🚀 Start Your Journey';
+                }
+            });
+            
+            console.log('✅ Form event listener added!');
+        }
+        
+        // Start initialization when page loads
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeApp);
+        } else {
+            initializeApp();
+        }
     </script>
 </body>
 </html>
