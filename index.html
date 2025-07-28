@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barbarika - Train the Next Generation of Robots</title>
-    <!-- Add Supabase Library -->
-    <script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
     <style>
         * {
             margin: 0;
@@ -379,10 +377,11 @@
             margin-top: 1rem;
             text-align: center;
             display: none;
+            border: 1px solid rgba(0,255,136,0.3);
         }
 
         .success-message.show {
-            display: block;
+            display: block !important;
         }
         
         /* Robot Illustration */
@@ -561,72 +560,56 @@
     </section>
 
     <script>
-        // Wait for Supabase to load before running code
-        function initializeApp() {
-            console.log('Checking if Supabase is loaded...', window.supabase);
+        // Simple form handler - no Supabase needed for now
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('✅ Page loaded!');
             
-            if (!window.supabase) {
-                console.log('Supabase not loaded yet, waiting...');
-                setTimeout(initializeApp, 100);
-                return;
-            }
-            
-            console.log('Supabase loaded successfully!');
-            
-            // Supabase configuration
-            const SUPABASE_URL = 'https://uatvmufliycargrakskw.supabase.co'
-            const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVhdHZtdWZsaXljYXJncmFrc2t3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM3MjE4NDksImV4cCI6MjA2OTI5Nzg0OX0.NV1ASX1axL-uUieXm7aR4ttlTQpdhLKX3oqdVnO4-ys'
-            const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
-            
-            console.log('Supabase client created:', supabase);
-
-            // Handle interest form
             const form = document.getElementById('interestForm');
+            const successMessage = document.getElementById('successMessage');
+            
+            console.log('✅ Form found:', form);
+            console.log('✅ Success message element:', successMessage);
+            
             if (form) {
-                form.addEventListener('submit', async (e) => {
-                    e.preventDefault()
-                    console.log('Form submitted!');
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault(); // Stop form from actually submitting
                     
-                    const formData = new FormData(e.target)
-                    const data = {
-                        name: formData.get('name'),
-                        phone: formData.get('phone'),
-                        email: formData.get('email') || null
-                    }
+                    console.log('🚀 Form submitted!');
                     
-                    console.log('Form data:', data);
+                    // Get form data
+                    const formData = new FormData(e.target);
+                    const name = formData.get('name');
+                    const email = formData.get('email');
+                    const phone = formData.get('phone');
                     
-                    try {
-                        const { data: result, error } = await supabase
-                            .from('interest_leads')
-                            .insert([data])
+                    console.log('📝 Name:', name);
+                    console.log('📧 Email:', email);
+                    console.log('📱 Phone:', phone);
+                    
+                    // Show success message
+                    if (successMessage) {
+                        successMessage.classList.add('show');
+                        console.log('✅ Success message should be visible now!');
                         
-                        if (error) {
-                            console.error('Supabase error:', error);
-                            alert('Error: ' + error.message);
-                        } else {
-                            console.log('Success! Data inserted:', result);
-                            document.getElementById('successMessage').classList.add('show');
-                            e.target.reset();
-                        }
-                    } catch (err) {
-                        console.error('JavaScript error:', err);
-                        alert('Unexpected error: ' + err.message);
+                        // Also make it visible with direct style as backup
+                        successMessage.style.display = 'block';
+                        
+                    } else {
+                        console.error('❌ Success message element not found!');
                     }
+                    
+                    // Clear form
+                    e.target.reset();
+                    
+                    // Alert for testing
+                    alert('✅ Form submitted successfully! Check if green message appears below the form.');
                 });
                 
-                console.log('Form event listener added');
+                console.log('✅ Form event listener added successfully!');
             } else {
-                console.error('Form with ID "interestForm" not found!');
+                console.error('❌ Form with ID "interestForm" not found!');
             }
-        }
-
-        // Start initialization when page loads
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initializeApp);
-        } else {
-            initializeApp();
-        }
+        });
     </script>
 </body>
 </html>
