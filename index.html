@@ -1,4 +1,27 @@
-<!DOCTYPE html>
+/* Form Section */
+        .form-section {
+            background: #0a0f1c;
+            padding: 4rem 0;
+        }
+        
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }        /* CTA Tag */
+        .cta-tag {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .cta-tag span {
+            background: rgba(0, 255, 136, 0.1);
+            color: #00ff88;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -211,8 +234,8 @@
         }
         
         .panel-header {
-            text-align: center;
             margin-bottom: 2rem;
+            padding-top: 1rem;
         }
         
         .panel-title {
@@ -295,9 +318,16 @@
         .checkbox-group {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
             font-size: 0.9rem;
-            color: #a0a9ba;
+            color: #e1e5e9;
+            margin-bottom: 0.75rem;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #00ff88;
         }
         
         .signup-btn {
@@ -407,24 +437,29 @@
             display: block !important;
         }
         
-        /* Robot Mascot Image */
-        .robot-mascot {
-            position: absolute;
-            right: -5%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 300px;
-            height: 300px;
-            z-index: 1;
-            opacity: 0.8;
+        /* Robot Mascot in Main Section */
+        .mascot-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .robot-mascot-main {
+            width: 350px;
+            height: 350px;
             animation: float 6s ease-in-out infinite;
         }
         
-        .robot-mascot img {
+        .robot-mascot-main img {
             width: 100%;
             height: 100%;
             object-fit: contain;
             filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.3));
+        }
+        
+        /* Remove old floating mascot */
+        .robot-mascot {
+            display: none;
         }
         
         /* Background Robot Illustration - More Subtle */
@@ -470,15 +505,13 @@
                 align-items: center;
             }
             
-            .hero-panel {
-                margin-top: 2rem;
+            .robot-mascot-main {
+                width: 250px;
+                height: 250px;
             }
             
-            .robot-mascot {
-                right: 2%;
-                bottom: 5%;
-                transform: scale(0.7);
-                position: fixed;
+            .form-container {
+                padding: 0 1rem;
             }
         }
         
@@ -518,7 +551,6 @@
                 <li><a href="#dojo-guide">Dojo Guide</a></li>
                 <li><a href="#starter-pack">Starter Pack</a></li>
                 <li><a href="#docs">Docs</a></li>
-                <li><a href="#blog">Blog</a></li>
             </ul>
         </div>
     </nav>
@@ -539,8 +571,8 @@
         
         <div class="hero-container">
             <div class="hero-content">
-                <h1>Train the Next Generation of <span class="highlight">Robots</span></h1>
-                <p class="hero-subtitle">Join thousands of builders creating the future of Physical AI through hands-on teleoperation and collaborative dataset generation.</p>
+                <h1>The Fastest Way to Train the Next Generation of <span class="highlight">Robots</span></h1>
+                <p class="hero-subtitle">Join the open-source dojo shaping the future of Physical AI — through real-world teleoperation, imitation learning, and collaborative data generation.</p>
                 
                 <div class="stats">
                     <div class="stat">
@@ -558,39 +590,38 @@
                 </div>
                 
                 <div class="cta-buttons">
-                    <a href="#signup" class="btn-primary">Join the Dojo - Free</a>
-                    <a href="#learn-more" class="btn-secondary">Watch Demo</a>
+                    <a href="#signup" class="btn-primary">Join Dojo</a>
+                    <a href="#kit" class="btn-secondary">Get the S0100 Kit</a>
+                </div>
+                
+                <div class="cta-tag">
+                    <span>✨ No coding required • Beginner-friendly</span>
                 </div>
                 
                 <div class="quick-links">
-                    <a href="#guide">📖 Read Dojo Guide</a>
-                    <a href="#community">💬 Join WhatsApp</a>
-                    <a href="#github">⭐ GitHub</a>
+                    <a href="https://docs.barbarika.com/dojo-guide">📖 Read Dojo Guide</a>
+                    <a href="https://chat.whatsapp.com/barbarika">💬 Join WhatsApp</a>
+                    <a href="https://github.com/barbarika">⭐ GitHub</a>
                 </div>
             </div>
             
             <div class="hero-panel">
                 <div class="panel-header">
                     <h2 class="panel-title">Become a Sensei</h2>
-                    <p class="panel-subtitle">Start building robots in minutes, not months</p>
+                    <p class="panel-subtitle">Get early access and help shape the platform</p>
                 </div>
                 
                 <ul class="benefits">
                     <li>Master teleoperation through community learning</li>
-                    <li>$500 hardware kits ready to ship worldwide</li>
-                    <li>Contribute to open-source foundation models</li>
-                    <li>Join 2,000+ builders across 50+ countries</li>
+                    <li>Read the comprehensive Dojo Guide</li>
+                    <li>Order S0100 kit and start training</li>
+                    <li>Start recording datasets for the community</li>
                 </ul>
                 
                 <form class="signup-form" id="interestForm">
                     <div class="form-group">
-                        <label for="name">First Name *</label>
-                        <input type="text" id="name" name="name" placeholder="Enter your first name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
                     </div>
 
                     <div class="form-group">
@@ -598,12 +629,19 @@
                         <input type="tel" id="phone" name="phone" placeholder="+91 9876543210" required>
                     </div>
                     
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="newsletter">
-                        <label for="newsletter">Yes, subscribe me to the newsletter</label>
+                    <div class="form-group">
+                        <label style="margin-bottom: 1rem;">What's your current status?</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="already-built" name="status" value="already-built">
+                            <label for="already-built">I have already built S0100 arm</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="want-to-order" name="status" value="want-to-order">
+                            <label for="want-to-order">I want to order S0100 kit</label>
+                        </div>
                     </div>
                     
-                    <button type="submit" class="signup-btn">🚀 Start Your Journey</button>
+                                            <button type="submit" class="signup-btn">Join Dojo</button>
                 </form>
 
                 <div id="successMessage" class="success-message">
@@ -618,13 +656,63 @@
                     <span>or</span>
                 </div>
                 
-                <div class="secondary-actions">
-                    <a href="#kit" class="action-btn">
-                        🛒 Order S0100 Starter Kit ($500)
+                <div class="secondary-actions" style="display: none;">
+                    <a href="#preorder" class="action-btn">
+                        ✅ I have already built S0100 arm, I want to preorder
                     </a>
-                    <a href="#whatsapp" class="action-btn">
-                        💬 Join WhatsApp Community
-                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form section below -->
+    <section class="form-section">
+        <div class="form-container">
+            <div class="hero-panel" id="signup">
+                <div class="panel-header">
+                    <h2 class="panel-title">Become a Sensie</h2>
+                    <p class="panel-subtitle">Get early access and help shape the platform</p>
+                </div>
+                
+                <ul class="benefits">
+                    <li>No prior robotics experience needed</li>
+                    <li>Build or get your S0100 kit</li>
+                    <li>Train robots with just your laptop and camera</li>
+                    <li>Contribute data to our shared models</li>
+                </ul>
+                
+                <form class="signup-form" id="interestForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">WhatsApp Number *</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+91 9876543210" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label style="margin-bottom: 1rem;">What's your current status?</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="already-built" name="status" value="already-built">
+                            <label for="already-built">Already built S0100 Arm</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="want-to-order" name="status" value="planning-to-order">
+                            <label for="want-to-order">Planning to order</label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="signup-btn">Join Dojo</button>
+                </form>
+
+                <div id="successMessage" class="success-message">
+                    ✅ Thank you! We'll be in touch soon.
+                </div>
+
+                <div id="errorMessage" class="error-message">
+                    ❌ Something went wrong. Please try again.
                 </div>
             </div>
         </div>
@@ -681,10 +769,18 @@
                 try {
                     // Get form data
                     const formData = new FormData(e.target);
+                    const statusValues = [];
+                    
+                    // Get checkbox values
+                    if (formData.get('status')) {
+                        const checkboxes = e.target.querySelectorAll('input[name="status"]:checked');
+                        checkboxes.forEach(cb => statusValues.push(cb.value));
+                    }
+                    
                     const data = {
                         name: formData.get('name'),
                         phone: formData.get('phone'),
-                        email: formData.get('email') || null
+                        status: statusValues.join(', ') || null
                     };
                     
                     console.log('📊 Form data:', data);
