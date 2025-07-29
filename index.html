@@ -13,6 +13,11 @@
             box-sizing: border-box;
         }
         
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
@@ -601,11 +606,11 @@
                 
                 <div class="cta-buttons">
                     <a href="#signup" class="btn-primary">Join the Dojo</a>
-                    <a href="#kit" class="btn-secondary">Order the Starter Kit</a>
+                    <a href="#signup" class="btn-secondary">Order the Starter Kit</a>
                 </div>
                 
                 <div class="quick-links">
-                    <a href="https://docs.barbarika.com/dojo-guide">📖 Read Dojo Guide</a>
+                    <a href="https://barbarika.gitbook.io/untitled-1">📖 Read Dojo Guide</a>
                     <a href="https://docs.barbarika.com">📚 Read Dojo Docs</a>
                     <a href="https://github.com/barbarika">⭐ GitHub</a>
                 </div>
@@ -704,7 +709,7 @@
                         </div>
                     </div>
                     
-                    <button type="submit" class="signup-btn">Join Dojo</button>
+                    <button type="submit" class="signup-btn">Join The Dojo</button>
                 </form>
 
                 <div id="successMessage" class="success-message">
@@ -821,7 +826,7 @@
                 // Re-enable submit button
                 if (submitButton) {
                     submitButton.disabled = false;
-                    submitButton.textContent = 'Join Dojo';
+                    submitButton.textContent = 'Join The Dojo';
                 }
             });
             
