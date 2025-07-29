@@ -267,13 +267,32 @@
             align-items: center;
         }
         
+        /* Kit Info */
+        .kit-info {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .kit-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+        
+        .kit-subtitle {
+            font-size: 1rem;
+            color: #a0a9ba;
+            font-weight: 500;
+        }
+        
         /* S0100 Arm Image on Left */
         .arm-image-section {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 2rem;
+            gap: 1.5rem;
         }
         
         .arm-image {
@@ -291,19 +310,20 @@
         
         /* Trust Badges */
         .trust-badges {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
             align-items: center;
             text-align: center;
+            max-width: 400px;
         }
         
         .trust-badge span {
             background: rgba(0, 255, 136, 0.1);
             color: #00ff88;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
             border: 1px solid rgba(0, 255, 136, 0.3);
             display: inline-block;
             font-weight: 500;
@@ -518,12 +538,13 @@
             }
             
             .trust-badges {
-                gap: 0.75rem;
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
             }
             
             .trust-badge span {
-                padding: 0.5rem 1rem;
-                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+                font-size: 0.75rem;
             }
         }
         
@@ -575,32 +596,17 @@
         <div class="hero-container">
             <!-- Left Side: Content -->
             <div class="hero-content">
-                <h1>Train the Next Generation of <span class="highlight">Robots</span></h1>
-                <p class="hero-subtitle">Join the open-source dojo shaping the future of Physical AI — through real-world teleoperation, imitation learning, and collaborative data generation.</p>
-                
-                <div class="stats">
-                    <div class="stat">
-                        <span class="stat-number">100+</span>
-                        <span class="stat-label">Hours of Training Data</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">10K</span>
-                        <span class="stat-label">Trajectories</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">$500</span>
-                        <span class="stat-label">Starter Kit</span>
-                    </div>
-                </div>
+                <h1>Train <span class="highlight">Robots</span> Like You Train GPTs</h1>
+                <p class="hero-subtitle">With massive, real-world, diverse datasets — powered by teleoperation. Join the open-source community shaping the future of Physical AI.</p>
                 
                 <div class="cta-buttons">
-                    <a href="#signup" class="btn-primary">Join Dojo</a>
-                    <a href="#kit" class="btn-secondary">Get the S0100 Kit</a>
+                    <a href="#signup" class="btn-primary">Join the Dojo</a>
+                    <a href="#kit" class="btn-secondary">Order the Starter Kit</a>
                 </div>
                 
                 <div class="quick-links">
                     <a href="https://docs.barbarika.com/dojo-guide">📖 Read Dojo Guide</a>
-                    <a href="https://chat.whatsapp.com/barbarika">💬 Join WhatsApp</a>
+                    <a href="https://docs.barbarika.com">📚 Read Dojo Docs</a>
                     <a href="https://github.com/barbarika">⭐ GitHub</a>
                 </div>
             </div>
@@ -623,6 +629,11 @@
         <div class="form-container">
             <!-- Left Side: S0100 Arm Image -->
             <div class="arm-image-section">
+                <div class="kit-info">
+                    <h3 class="kit-title">SO-101 Starter Kit</h3>
+                    <p class="kit-subtitle">(1 Leader + 1 Follower + 1 Camera)</p>
+                </div>
+                
                 <div class="arm-image">
                     <img src="https://raw.githubusercontent.com/metaseeker1/barbarika_site/main/SO100_Arm.png" 
                          alt="S0100 Robotic Arm"
@@ -634,7 +645,13 @@
                 <!-- Trust badges below the image -->
                 <div class="trust-badges">
                     <div class="trust-badge">
-                        <span>✨ No coding required • Beginner-friendly</span>
+                        <span>✨ Beginner-friendly</span>
+                    </div>
+                    <div class="trust-badge">
+                        <span>💰 Affordable $500</span>
+                    </div>
+                    <div class="trust-badge">
+                        <span>🚀 Easiest way to get started</span>
                     </div>
                     <div class="trust-badge">
                         <span>🤗 Official hardware partner to Hugging Face LeRobot</span>
@@ -651,7 +668,6 @@
                 
                 <ul class="benefits">
                     <li>No prior robotics experience needed</li>
-                    <li>Build or get your S0100 kit</li>
                     <li>Train robots with just your laptop and camera</li>
                     <li>Contribute data to our shared models</li>
                 </ul>
@@ -660,6 +676,11 @@
                     <div class="form-group">
                         <label for="name">Full Name *</label>
                         <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
                     </div>
 
                     <div class="form-group">
@@ -670,12 +691,16 @@
                     <div class="form-group">
                         <label style="margin-bottom: 1rem;">What's your current status?</label>
                         <div class="checkbox-group">
-                            <input type="checkbox" id="already-built" name="status" value="already-built">
-                            <label for="already-built">Already built S0100 Arm</label>
+                            <input type="checkbox" id="already-built" name="status" value="already-built-so100-so101">
+                            <label for="already-built">Already built SO100/SO101 Robot</label>
                         </div>
                         <div class="checkbox-group">
-                            <input type="checkbox" id="want-to-order" name="status" value="planning-to-order">
-                            <label for="want-to-order">Planning to order</label>
+                            <input type="checkbox" id="build-yourself" name="status" value="build-yourself">
+                            <label for="build-yourself">Build it yourself (Read Docs)</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="order-kit" name="status" value="order-starter-kit">
+                            <label for="order-kit">Order the starter kit</label>
                         </div>
                     </div>
                     
@@ -754,6 +779,7 @@
                     
                     const data = {
                         name: formData.get('name'),
+                        email: formData.get('email'),
                         phone: formData.get('phone'),
                         status: statusValues.join(', ') || null
                     };
