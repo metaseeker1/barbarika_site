@@ -1,27 +1,4 @@
-/* Form Section */
-        .form-section {
-            background: #0a0f1c;
-            padding: 4rem 0;
-        }
-        
-        .form-container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }        /* CTA Tag */
-        .cta-tag {
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-        
-        .cta-tag span {
-            background: rgba(0, 255, 136, 0.1);
-            color: #00ff88;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            border: 1px solid rgba(0, 255, 136, 0.3);
-        }<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -205,6 +182,21 @@
             color: #00ff88;
         }
         
+        /* CTA Tag */
+        .cta-tag {
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        
+        .cta-tag span {
+            background: rgba(0, 255, 136, 0.1);
+            color: #00ff88;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+        
         .quick-links {
             display: flex;
             gap: 1.5rem;
@@ -224,7 +216,52 @@
             color: #00ff88;
         }
         
-        /* Right Panel */
+        /* Robot Mascot on Right */
+        .mascot-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .robot-mascot-main {
+            width: 400px;
+            height: 400px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .robot-mascot-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.3));
+        }
+        
+        /* Background Robot Illustration - More Subtle */
+        .robot-illustration {
+            position: absolute;
+            right: -15%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.03;
+            font-size: 25rem;
+            z-index: 1;
+            color: #00ff88;
+            pointer-events: none;
+        }
+        
+        /* Form Section - Below Hero */
+        .form-section {
+            background: #0a0f1c;
+            padding: 4rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
         .hero-panel {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -234,6 +271,7 @@
         }
         
         .panel-header {
+            text-align: center;
             margin-bottom: 2rem;
             padding-top: 1rem;
         }
@@ -353,58 +391,6 @@
             cursor: not-allowed;
         }
         
-        .divider {
-            text-align: center;
-            margin: 1.5rem 0;
-            color: #a0a9ba;
-            position: relative;
-        }
-        
-        .divider::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.1);
-            z-index: 1;
-        }
-        
-        .divider span {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0 1rem;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .secondary-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-        
-        .action-btn {
-            background: rgba(0, 255, 136, 0.1);
-            color: #00ff88;
-            border: 1px solid rgba(0, 255, 136, 0.3);
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            text-decoration: none;
-            text-align: center;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-        
-        .action-btn:hover {
-            background: rgba(0, 255, 136, 0.2);
-            border-color: #00ff88;
-        }
-
         /* Success Message */
         .success-message {
             background: rgba(0,255,136,0.1);
@@ -435,44 +421,6 @@
 
         .error-message.show {
             display: block !important;
-        }
-        
-        /* Robot Mascot in Main Section */
-        .mascot-section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .robot-mascot-main {
-            width: 350px;
-            height: 350px;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .robot-mascot-main img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.3));
-        }
-        
-        /* Remove old floating mascot */
-        .robot-mascot {
-            display: none;
-        }
-        
-        /* Background Robot Illustration - More Subtle */
-        .robot-illustration {
-            position: absolute;
-            right: -15%;
-            top: 50%;
-            transform: translateY(-50%);
-            opacity: 0.03;
-            font-size: 25rem;
-            z-index: 1;
-            color: #00ff88;
-            pointer-events: none;
         }
         
         /* Responsive Design */
@@ -528,16 +476,16 @@
         }
         
         @keyframes float {
-            0%, 100% { transform: translateY(-50%) rotate(0deg); }
-            50% { transform: translateY(-55%) rotate(2deg); }
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
         }
         
         .hero-content > * {
             animation: fadeInUp 0.8s ease-out forwards;
         }
         
-        .hero-panel {
-            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+        .robot-mascot-main {
+            animation: fadeInUp 0.8s ease-out 0.2s forwards, float 6s ease-in-out infinite;
         }
     </style>
 </head>
@@ -560,16 +508,8 @@
         <!-- Background robot illustration -->
         <div class="robot-illustration">🤖</div>
         
-        <!-- Robot mascot image -->
-        <div class="robot-mascot">
-            <img src="https://raw.githubusercontent.com/metaseeker1/barbarika_site/main/Barbarika_logo-removebg-preview.png" 
-                 alt="Barbarika Robot Mascot"
-                 crossorigin="anonymous"
-                 onload="console.log('✅ Robot mascot loaded successfully!')"
-                 onerror="console.log('❌ Robot image failed to load'); this.style.display='none';">
-        </div>
-        
         <div class="hero-container">
+            <!-- Left Side: Content -->
             <div class="hero-content">
                 <h1>The Fastest Way to Train the Next Generation of <span class="highlight">Robots</span></h1>
                 <p class="hero-subtitle">Join the open-source dojo shaping the future of Physical AI — through real-world teleoperation, imitation learning, and collaborative data generation.</p>
@@ -605,67 +545,20 @@
                 </div>
             </div>
             
-            <div class="hero-panel">
-                <div class="panel-header">
-                    <h2 class="panel-title">Become a Sensei</h2>
-                    <p class="panel-subtitle">Get early access and help shape the platform</p>
-                </div>
-                
-                <ul class="benefits">
-                    <li>Master teleoperation through community learning</li>
-                    <li>Read the comprehensive Dojo Guide</li>
-                    <li>Order S0100 kit and start training</li>
-                    <li>Start recording datasets for the community</li>
-                </ul>
-                
-                <form class="signup-form" id="interestForm">
-                    <div class="form-group">
-                        <label for="name">Full Name *</label>
-                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone">WhatsApp Number *</label>
-                        <input type="tel" id="phone" name="phone" placeholder="+91 9876543210" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label style="margin-bottom: 1rem;">What's your current status?</label>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="already-built" name="status" value="already-built">
-                            <label for="already-built">I have already built S0100 arm</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="want-to-order" name="status" value="want-to-order">
-                            <label for="want-to-order">I want to order S0100 kit</label>
-                        </div>
-                    </div>
-                    
-                                            <button type="submit" class="signup-btn">Join Dojo</button>
-                </form>
-
-                <div id="successMessage" class="success-message">
-                    ✅ Thank you! We'll be in touch soon.
-                </div>
-
-                <div id="errorMessage" class="error-message">
-                    ❌ Something went wrong. Please try again.
-                </div>
-                
-                <div class="divider">
-                    <span>or</span>
-                </div>
-                
-                <div class="secondary-actions" style="display: none;">
-                    <a href="#preorder" class="action-btn">
-                        ✅ I have already built S0100 arm, I want to preorder
-                    </a>
+            <!-- Right Side: Robot Mascot ONLY -->
+            <div class="mascot-section">
+                <div class="robot-mascot-main">
+                    <img src="https://raw.githubusercontent.com/metaseeker1/barbarika_site/main/Barbarika_logo-removebg-preview.png" 
+                         alt="Barbarika Robot Mascot"
+                         crossorigin="anonymous"
+                         onload="console.log('✅ Robot mascot loaded successfully!')"
+                         onerror="console.log('❌ Robot image failed to load'); this.style.display='none';">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Form section below -->
+    <!-- Form Section - Below Hero -->
     <section class="form-section">
         <div class="form-container">
             <div class="hero-panel" id="signup">
@@ -730,6 +623,8 @@
                 return;
             }
             
+            console.log('✅ Supabase loaded!');
+            
             // Supabase configuration
             const SUPABASE_URL = 'https://uatvmufliycargrakskw.supabase.co';
             const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVhdHZtdWZsaXljYXJncmFrc2t3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM3MjE4NDksImV4cCI6MjA2OTI5Nzg0OX0.NV1ASX1axL-uUieXm7aR4ttlTQpdhLKX3oqdVnO4-ys';
@@ -772,10 +667,8 @@
                     const statusValues = [];
                     
                     // Get checkbox values
-                    if (formData.get('status')) {
-                        const checkboxes = e.target.querySelectorAll('input[name="status"]:checked');
-                        checkboxes.forEach(cb => statusValues.push(cb.value));
-                    }
+                    const checkboxes = e.target.querySelectorAll('input[name="status"]:checked');
+                    checkboxes.forEach(cb => statusValues.push(cb.value));
                     
                     const data = {
                         name: formData.get('name'),
@@ -820,7 +713,7 @@
                 // Re-enable submit button
                 if (submitButton) {
                     submitButton.disabled = false;
-                    submitButton.textContent = '🚀 Start Your Journey';
+                    submitButton.textContent = 'Join Dojo';
                 }
             });
             
