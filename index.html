@@ -371,11 +371,12 @@
         
         .benefits li {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 0.75rem;
             margin-bottom: 1rem;
             color: #e1e5e9;
             font-size: 1rem;
+            line-height: 1.4;
         }
         
         .benefits li::before {
@@ -390,6 +391,8 @@
             justify-content: center;
             font-weight: bold;
             font-size: 0.8rem;
+            flex-shrink: 0;
+            margin-top: 2px;
         }
         
         .signup-form {
