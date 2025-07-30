@@ -781,17 +781,19 @@
                 try {
                     // Get form data
                     const formData = new FormData(e.target);
-                    const statusValues = [];
                     
                     // Get checkbox values
-                    const checkboxes = e.target.querySelectorAll('input[name="status"]:checked');
-                    checkboxes.forEach(cb => statusValues.push(cb.value));
+                    const alreadyBuilt = document.getElementById('already-built').checked;
+                    const buildYourself = document.getElementById('build-yourself').checked;
+                    const orderKit = document.getElementById('order-kit').checked;
                     
                     const data = {
                         name: formData.get('name'),
                         email: formData.get('email'),
                         phone: formData.get('phone'),
-                        status: statusValues.join(', ') || null
+                        already_built_robot: alreadyBuilt,
+                        wants_to_build_yourself: buildYourself,
+                        wants_to_order_kit: orderKit
                     };
                     
                     console.log('📊 Form data:', data);
