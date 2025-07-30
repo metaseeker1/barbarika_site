@@ -772,6 +772,17 @@
                 successMessage.classList.remove('show');
                 errorMessage.classList.remove('show');
                 
+                // Validate that at least one status checkbox is selected
+                const alreadyBuilt = document.getElementById('already-built').checked;
+                const buildYourself = document.getElementById('build-yourself').checked;
+                const orderKit = document.getElementById('order-kit').checked;
+                
+                if (!alreadyBuilt && !buildYourself && !orderKit) {
+                    errorMessage.textContent = '❌ Please select at least one option from "What\'s your current status?"';
+                    errorMessage.classList.add('show');
+                    return;
+                }
+                
                 // Disable submit button
                 if (submitButton) {
                     submitButton.disabled = true;
@@ -783,10 +794,6 @@
                     const formData = new FormData(e.target);
                     
                     // Get checkbox values
-                    const alreadyBuilt = document.getElementById('already-built').checked;
-                    const buildYourself = document.getElementById('build-yourself').checked;
-                    const orderKit = document.getElementById('order-kit').checked;
-                    
                     const data = {
                         name: formData.get('name'),
                         email: formData.get('email'),
