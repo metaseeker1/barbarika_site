@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TAP MY EGO — Barbarika</title>
+  <meta name="description" content="Turn everyday moments into collective intelligence." />
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;background:#000;color:#fff;font-family:Arimo,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    h1,h2{font-family:Impact,Haettenschweiler,'Arial Narrow Bold',sans-serif}
+
+    canvas#grain{position:fixed;inset:-10%;width:120%;height:120%;opacity:.18;mix-blend-mode:soft-light;z-index:1;pointer-events:none}
+    .noise-svg{position:fixed;inset:-2%;mix-blend-mode:overlay;opacity:.22;z-index:1;pointer-events:none}
+    .wrap{width:min(1200px,92vw);margin-inline:auto}
+
+    header{position:sticky;top:0;z-index:3;background:linear-gradient(#000,rgba(0,0,0,.6) 60%,transparent);padding:14px 0}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand img{width:44px;height:auto}
+    .brand span{font-family:Impact,Haettenschweiler,'Arial Narrow Bold',sans-serif;font-size:22px;letter-spacing:.05em}
+
+    main{position:relative;z-index:2;padding:6vh 0 10vh}
+
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:min(4vw,40px);align-items:start}
+    .hero-left img{width:100%;height:auto;border-radius:4px}
+    .hero-right{display:grid;gap:min(20px,2vw)}
+    .thumb{width:100%;border-radius:4px}
+    .thumb.frame{outline:6px solid #5f6bff33;outline-offset:-4px}
+    .title{font-size:clamp(42px,12vw,140px);line-height:.9;margin-top:14px;background:linear-gradient(90deg,#9ad7ff 0%,#5977ff 100%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 6px 38px rgba(80,140,255,.25);}
+
+    .sections{margin-top:7vh;display:grid;gap:40px}
+    .sec h3{font-size:clamp(18px,2.2vw,28px);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+    .sec p{max-width:60ch;font-size:clamp(14px,1.6vw,18px);opacity:.95}
+
+    .cta-row{margin-top:50px}
+    .btn{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#000;padding:8px 16px;border-radius:999px;font-weight:700;font-size:14px;border:1px solid rgba(0,0,0,.15)}
+    .btn:hover{filter:brightness(.95)}
+
+    footer{margin-top:8vh;padding:24px 0;border-top:1px solid #1f1f1f;opacity:.75;font-size:13px;text-align:center}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap brand">
+      <img src="https://raw.githubusercontent.com/metaseeker1/barbarika_site/main/hjjkk.png" alt="Barbarika">
+      <span>BARBARIKA</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-left">
+        <img src="https://raw.githubusercontent.com/metaseeker1/barbarika_site/main/tapego.png" alt="Tap My Ego hero">
+        <h1 class="title">TAPMYEGO</h1>
+      </div>
+      <div class="hero-right">
+        <img class="thumb" src="https://raw.githubusercontent.com/metaseeker1/barbarika_site/main/cloth_fold.png" alt="">
+        <img class="thumb frame" src="https://raw.githubusercontent.com/metaseeker1/barbarika_site/main/8f243b58dfe966d7aef650346c7c6498.jpg" alt="">
+        <img class="thumb" src="https://raw.githubusercontent.com/metaseeker1/barbarika_site/main/cooking.png" alt="">
+      </div>
+    </section>
+
+    <section class="sections">
+      <div class="sec">
+        <h3>TURN EVERYDAY MOMENTS INTO COLLECTIVE
