@@ -11,8 +11,10 @@
     html,body{height:100%;background:#000;color:#fff;font-family:Arimo,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
     h1,h2{font-family:Impact,Haettenschweiler,'Arial Narrow Bold',sans-serif}
 
+    /* Global grain overlays */
     canvas#grain{position:fixed;inset:-10%;width:120%;height:120%;opacity:.18;mix-blend-mode:soft-light;z-index:1;pointer-events:none}
     .noise-svg{position:fixed;inset:-2%;mix-blend-mode:overlay;opacity:.22;z-index:1;pointer-events:none}
+
     .wrap{width:min(1200px,92vw);margin-inline:auto}
 
     header{position:sticky;top:0;z-index:3;background:linear-gradient(#000,rgba(0,0,0,.6) 60%,transparent);padding:14px 0}
@@ -22,26 +24,46 @@
 
     main{position:relative;z-index:2;padding:6vh 0 10vh}
 
+    /* Hero grid */
     .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:min(4vw,40px);align-items:start}
-    .hero-left img{width:100%;height:auto;border-radius:4px}
+    .hero-left img{width:100%;height:auto;border-radius:4px;display:block}
     .hero-right{display:grid;gap:min(20px,2vw)}
-    .thumb{width:100%;border-radius:4px}
+    .thumb{width:100%;border-radius:4px;display:block}
     .thumb.frame{outline:6px solid #5f6bff33;outline-offset:-4px}
-    .title{font-size:clamp(42px,12vw,140px);line-height:.9;margin-top:14px;background:linear-gradient(90deg,#9ad7ff 0%,#5977ff 100%);
-      -webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 6px 38px rgba(80,140,255,.25);}
 
+    .title{
+      font-size:clamp(42px,12vw,140px);
+      line-height:.9;letter-spacing:.02em;margin-top:14px;
+      background:linear-gradient(90deg,#9ad7ff 0%,#5977ff 100%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      text-shadow:0 6px 38px rgba(80,140,255,.25);
+    }
+
+    /* Text sections */
     .sections{margin-top:7vh;display:grid;gap:40px}
-    .sec h3{font-size:clamp(18px,2.2vw,28px);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
-    .sec p{max-width:60ch;font-size:clamp(14px,1.6vw,18px);opacity:.95}
+    .sec h3{
+      font-size:clamp(18px,2.2vw,28px);
+      letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px
+    }
+    .sec p{max-width:65ch;font-size:clamp(14px,1.6vw,18px);opacity:.95;line-height:1.6}
 
+    /* CTA */
     .cta-row{margin-top:50px}
-    .btn{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#000;padding:8px 16px;border-radius:999px;font-weight:700;font-size:14px;border:1px solid rgba(0,0,0,.15)}
+    .btn{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#000;
+      padding:8px 16px;border-radius:999px;font-weight:700;font-size:14px;
+      border:1px solid rgba(0,0,0,.15)}
     .btn:hover{filter:brightness(.95)}
 
     footer{margin-top:8vh;padding:24px 0;border-top:1px solid #1f1f1f;opacity:.75;font-size:13px;text-align:center}
+
+    @media (max-width:820px){
+      .hero{grid-template-columns:1fr;gap:22px}
+      .title{margin-top:10px}
+    }
   </style>
 </head>
 <body>
+  <!-- Top bar -->
   <header>
     <div class="wrap brand">
       <img src="https://raw.githubusercontent.com/metaseeker1/barbarika_site/main/hjjkk.png" alt="Barbarika">
@@ -50,18 +72,85 @@
   </header>
 
   <main class="wrap">
+    <!-- Hero -->
     <section class="hero">
       <div class="hero-left">
         <img src="https://raw.githubusercontent.com/metaseeker1/barbarika_site/main/tapego.png" alt="Tap My Ego hero">
         <h1 class="title">TAPMYEGO</h1>
       </div>
       <div class="hero-right">
-        <img class="thumb" src="https://raw.githubusercontent.com/metaseeker1/barbarika_site/main/cloth_fold.png" alt="">
-        <img class="thumb frame" src="https://raw.githubusercontent.com/metaseeker1/barbarika_site/main/8f243b58dfe966d7aef650346c7c6498.jpg" alt="">
-        <img class="thumb" src="https://raw.githubusercontent.com/metaseeker1/barbarika_site/main/cooking.png" alt="">
+        <img class="thumb" src="https://raw.githubusercontent.com/metaseeker1/barbarika_site/main/cloth_fold.png" alt="POV example 1">
+        <img class="thumb frame" src="https://raw.githubusercontent.com/metaseeker1/barbarika_site/main/8f243b58dfe966d7aef650346c7c6498.jpg" alt="POV example 2">
+        <img class="thumb" src="https://raw.githubusercontent.com/metaseeker1/barbarika_site/main/cooking.png" alt="POV example 3">
       </div>
     </section>
 
+    <!-- Copy -->
     <section class="sections">
       <div class="sec">
-        <h3>TURN EVERYDAY MOMENTS INTO COLLECTIVE
+        <h3>TURN EVERYDAY MOMENTS INTO COLLECTIVE INTELLIGENCE</h3>
+        <p>
+          Your daily actions aren’t just routines — they’re powerful signals for robot learning.
+          Capture short POV clips of tasks you already do: cooking, cleaning, organizing, folding,
+          using tools, and more. Help build the world’s most practical robot skillset.
+        </p>
+      </div>
+
+      <div class="sec">
+        <h3>PLAY, CONTRIBUTE, EARN</h3>
+        <p>
+          Join the TapMyEgo Quest — complete micro-challenges, collect XP, and level up.
+          Contributors receive rewards, early-access perks, and a share of revenue from datasets
+          their clips power across the Barbarika ecosystem.
+        </p>
+      </div>
+
+      <div class="sec">
+        <h3>BUILD THE FUTURE OF PHYSICAL INTELLIGENCE</h3>
+        <p>
+          The future of robotics depends on diverse, human-centered data. With your help,
+          robots learn real-world habits, long-tail edge cases, and dexterity — not just lab demos.
+          Tap in and shape what robots can actually do in the wild.
+        </p>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn" href="index.html">← Back to Home</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2025 Barbarika — TapMyEgo</footer>
+
+  <!-- Grain layers -->
+  <canvas id="grain"></canvas>
+  <svg class="noise-svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 100 100">
+    <filter id="noiseFilter">
+      <feTurbulence type="fractalNoise" baseFrequency="1.5" numOctaves="3" stitchTiles="stitch" seed="0">
+        <animate attributeName="seed" from="0" to="120" dur="6s" repeatCount="indefinite"/>
+      </feTurbulence>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.75"/></feComponentTransfer>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
+  </svg>
+
+  <script>
+    // Subtle shimmering grain
+    (function(){
+      const c=document.getElementById('grain'),x=c.getContext('2d');
+      function size(){const r=devicePixelRatio||1;c.width=innerWidth*r;c.height=innerHeight*r;x.setTransform(r,0,0,r,0,0)}
+      function frame(){
+        const w=c.width,h=c.height,i=x.createImageData(w,h),d=i.data;
+        for(let k=0;k<d.length;k+=6){
+          const v=(Math.random()*255)|0;
+          d[k]=v; d[k+1]=v; d[k+2]=v; d[k+3]=44;   // alpha
+        }
+        x.putImageData(i,0,0);
+        requestAnimationFrame(frame);
+      }
+      addEventListener('resize',size,{passive:true}); size(); frame();
+    })();
+  </script>
+</body>
+</html>
